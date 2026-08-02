@@ -11,7 +11,7 @@ version: "3.7"
 services:
   app_proxy:
     environment:
-      APP_HOST: $APP_ID_bridge_1
+      APP_HOST: ${APP_ID}_bridge_1
       APP_PORT: 5555
 
   bridge:
