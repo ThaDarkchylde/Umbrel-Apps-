@@ -1,2 +1,1 @@
-# Umbrel-Apps-
-Krypto apps &amp; more
+# Umbrel-Apps
