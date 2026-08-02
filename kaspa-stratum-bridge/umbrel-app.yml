@@ -1,7 +1,7 @@
 manifestVersion: 1
-id: kaspa-stratum-bridge
+id: kaspa
 category: networking
-name: Kaspa Stratum Bridge
+name: ThaDarkchylde Umbrel Apps
 icon: https://raw.githubusercontent.com/kaspanet/kaspad/master/docs/img/kaspa-logo.png
 version: "1.0.0"
 tagline: Stratum-Bridge für Solo-Mining an deinem eigenen Rusty-Kaspad-Node
