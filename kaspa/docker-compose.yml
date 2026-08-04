@@ -25,6 +25,3 @@ services:
       - "-log=false"
       - "-stats=false"
       - "-prom=:2114"
-    ports:
-      - "5555:5555"
-      - "5001:5555"
