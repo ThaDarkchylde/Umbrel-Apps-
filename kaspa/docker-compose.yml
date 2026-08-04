@@ -28,11 +28,4 @@ services:
     ports:
       - "5555:5555"   # Standardport der Bridge
       - "5001:5555"   # Zweiter Port, falls dein KS0 Ultra/deine Pool-Konfiguration 5001 erwartet
-    networks:
-      default:
-      kaspad_network:
 
-networks:
-  kaspad_network:
-    name: rusty-kaspad_default
-    external: true
