@@ -16,7 +16,7 @@ services:
 
   bridge:
     image: onemorebsmith/kaspa_bridge:latest
-    container_name: kaspa-stratum-bridge_bridge_1
+    container_name: kaspa_bridge_1
     restart: on-failure
     stop_grace_period: 30s
     command:
