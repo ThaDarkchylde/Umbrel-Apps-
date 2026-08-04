@@ -20,11 +20,12 @@ services:
     restart: on-failure
     stop_grace_period: 30s
     command:
-      - "-kaspa=rusty-kaspad_kaspad_1:16110"   # Container-Name der offiziellen "rusty-kaspad"-App + gRPC-Port
-      - "-stratum=:5555"
-      - "-log=true"
-      - "-stats=false"
-      - "-prom=:2114"
+  - "-kaspa=rusty-kaspad_kaspad_1:16110"
+  - "-stratum=:5555"
+  - "-log=false"
+  - "-stats=false"
+  - "-prom=:2114"
+
     ports:
       - "5555:5555"   # Standardport der Bridge
       - "5001:5555"   # Zweiter Port, falls dein KS0 Ultra/deine Pool-Konfiguration 5001 erwartet
