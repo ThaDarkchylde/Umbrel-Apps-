@@ -12,7 +12,7 @@ services:
   app_proxy:
     environment:
       APP_HOST: ${APP_ID}_bridge_1
-      APP_PORT: 5555
+      APP_PORT: 2114
 
   bridge:
     image: onemorebsmith/kaspa_bridge:latest
@@ -25,3 +25,5 @@ services:
       - "-log=false"
       - "-stats=false"
       - "-prom=:2114"
+    ports:
+      - "5555:5555"
