@@ -19,7 +19,7 @@ dependencies:
   - rusty-kaspad
 repo: https://github.com/onemorebsmith/kaspa-stratum-bridge
 support: https://github.com/onemorebsmith/kaspa-stratum-bridge/issues
-port: 5555
+port: 2114
 gallery: []
 releaseNotes: >-
   Erste Version: reine Stratum-Bridge ohne eigenen Node, verbindet sich mit
