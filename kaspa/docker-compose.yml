@@ -23,7 +23,7 @@ services:
       - "-kaspa=rusty-kaspad_kaspad_1:16110"
       - "-stratum=:5555"
       - "-log=false"
-      - "-stats=false"
+      - "-stats=true"
       - "-prom=:2114"
     ports:
       - "5555:5555"
