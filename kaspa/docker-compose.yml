@@ -32,4 +32,66 @@ services:
     ports:
       - "5555:5555"
 
+        watcher:
+    image: curlimages/curl:latest
+    container_name: kaspa_watcher_1
+    restart: on-failure
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        WEBHOOK="https://discord.com/api/webhooks/1459875457129254923/MGiJOi3xIbEQkM7ZQLk6ePHiPuJ0gKABx-1fMYKjPQrXob-j0YJaWT8Z0MIhA-cis0c5"
+        METRICS_URL="http://kaspa_bridge_1:2114/metrics"
+        LAST_SHARES=-1
+        LAST_SHARE_TIME=$(date +%s)
+        LAST_BLOCKS=-1
+        MINER_WAS_ONLINE=1
+        NO_SHARE_ALERT_SENT=0
+
+        send_discord() {
+          curl -s -H "Content-Type: application/json" -X POST \
+            -d "{\"content\": \"$1\"}" "$WEBHOOK" > /dev/null
+        }
+
+        while true; do
+          METRICS=$(curl -s --max-time 10 "$METRICS_URL")
+
+          if [ -z "$METRICS" ]; then
+            if [ "$MINER_WAS_ONLINE" = "1" ]; then
+              send_discord "🔴 **Miner/Bridge offline** - Metrics nicht erreichbar!"
+              MINER_WAS_ONLINE=0
+            fi
+            sleep 60
+            continue
+          fi
+
+          if [ "$MINER_WAS_ONLINE" = "0" ]; then
+            send_discord "🟢 **Miner/Bridge wieder online**"
+            MINER_WAS_ONLINE=1
+          fi
+
+          TOTAL_SHARES=$(echo "$METRICS" | grep '^ks_valid_share_counter{' | awk '{s+=$NF} END{print s+0}')
+          TOTAL_BLOCKS=$(echo "$METRICS" | grep '^ks_blocks_mined{' | awk '{s+=$NF} END{print s+0}')
+
+          if [ "$LAST_BLOCKS" != "-1" ] && [ "$TOTAL_BLOCKS" -gt "$LAST_BLOCKS" ]; then
+            send_discord "🎉 **Block gefunden!** Gesamtanzahl: $TOTAL_BLOCKS"
+          fi
+          LAST_BLOCKS=$TOTAL_BLOCKS
+
+          NOW=$(date +%s)
+          if [ "$TOTAL_SHARES" != "$LAST_SHARES" ]; then
+            LAST_SHARE_TIME=$NOW
+            LAST_SHARES=$TOTAL_SHARES
+            NO_SHARE_ALERT_SENT=0
+          else
+            ELAPSED=$((NOW - LAST_SHARE_TIME))
+            if [ "$ELAPSED" -ge 1800 ] && [ "$NO_SHARE_ALERT_SENT" = "0" ]; then
+              send_discord "⚠️ **Keine neuen Shares seit 30 Minuten!** Bitte Miner pruefen."
+              NO_SHARE_ALERT_SENT=1
+            fi
+          fi
+
+          sleep 60
+        done
+
+
 
