@@ -15,7 +15,7 @@ services:
       APP_PORT: 2114
 
   bridge:
-    image: onemorebsmith/kaspa_bridge:latest
+    image: rdugan/kaspa-stratum-bridge:latest
     container_name: kaspa_bridge_1
     restart: on-failure
     stop_grace_period: 30s
@@ -25,5 +25,10 @@ services:
       - "-log=false"
       - "-stats=true"
       - "-prom=:2114"
+      - "-mindiff=4096"
+      - "-vardiff=true"
+      - "-pow2clamp=true"
+      - "-extranonce=2"
     ports:
       - "5555:5555"
+
