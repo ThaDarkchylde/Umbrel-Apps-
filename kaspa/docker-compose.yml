@@ -32,7 +32,7 @@ services:
     ports:
       - "5555:5555"
 
-        watcher:
+  watcher:
     image: curlimages/curl:latest
     container_name: kaspa_watcher_1
     restart: on-failure
