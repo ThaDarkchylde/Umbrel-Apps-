@@ -32,7 +32,7 @@ services:
     ports:
       - "5555:5555"
 
-  watcher:
+   watcher:
     image: curlimages/curl:latest
     container_name: kaspa_watcher_1
     restart: on-failure
@@ -48,8 +48,10 @@ services:
         NO_SHARE_ALERT_SENT=0
 
         send_discord() {
+          MSG="$1"
+          printf '{"content":"%s"}' "$MSG" > /tmp/payload.json
           curl -s -H "Content-Type: application/json" -X POST \
-            -d "{\"content\": \"$1\"}" "$WEBHOOK" > /dev/null
+            --data @/tmp/payload.json "$WEBHOOK" > /dev/null
         }
 
         while true; do
@@ -57,7 +59,7 @@ services:
 
           if [ -z "$METRICS" ]; then
             if [ "$MINER_WAS_ONLINE" = "1" ]; then
-              send_discord "🔴 **Miner/Bridge offline** - Metrics nicht erreichbar!"
+              send_discord "Miner/Bridge offline - Metrics nicht erreichbar!"
               MINER_WAS_ONLINE=0
             fi
             sleep 60
@@ -65,7 +67,7 @@ services:
           fi
 
           if [ "$MINER_WAS_ONLINE" = "0" ]; then
-            send_discord "🟢 **Miner/Bridge wieder online**"
+            send_discord "Miner/Bridge wieder online"
             MINER_WAS_ONLINE=1
           fi
 
@@ -73,7 +75,7 @@ services:
           TOTAL_BLOCKS=$(echo "$METRICS" | grep '^ks_blocks_mined{' | awk '{s+=$NF} END{print s+0}')
 
           if [ "$LAST_BLOCKS" != "-1" ] && [ "$TOTAL_BLOCKS" -gt "$LAST_BLOCKS" ]; then
-            send_discord "🎉 **Block gefunden!** Gesamtanzahl: $TOTAL_BLOCKS"
+            send_discord "Block gefunden! Gesamtanzahl: $TOTAL_BLOCKS"
           fi
           LAST_BLOCKS=$TOTAL_BLOCKS
 
@@ -85,7 +87,7 @@ services:
           else
             ELAPSED=$((NOW - LAST_SHARE_TIME))
             if [ "$ELAPSED" -ge 1800 ] && [ "$NO_SHARE_ALERT_SENT" = "0" ]; then
-              send_discord "⚠️ **Keine neuen Shares seit 30 Minuten!** Bitte Miner pruefen."
+              send_discord "Keine neuen Shares seit 30 Minuten! Bitte Miner pruefen."
               NO_SHARE_ALERT_SENT=1
             fi
           fi
