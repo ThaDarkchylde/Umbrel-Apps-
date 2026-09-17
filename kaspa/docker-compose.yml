@@ -26,6 +26,7 @@ services:
       - "-stats=true"
       - "-prom=:2114"
       - "-mindiff=4096"
+      - "-sharespermin=1"
       - "-vardiff=true"
       - "-pow2clamp=true"
       - "-extranonce=2"
