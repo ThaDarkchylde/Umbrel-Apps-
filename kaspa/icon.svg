@@ -1,0 +1,62 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Kaspa Stratum Bridge</title>
+<desc>App icon in a Matrix-style digital rain aesthetic with a glowing green KASPA mark, symbolizing the stratum bridge connecting miners to the Kaspa node</desc>
+<defs>
+<radialGradient id="bg" cx="50%" cy="35%" r="75%">
+<stop offset="0" stop-color="#0C1F16"/>
+<stop offset="1" stop-color="#030805"/>
+</radialGradient>
+<linearGradient id="kglow" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#7CFFB8"/>
+<stop offset="1" stop-color="#12E37A"/>
+</linearGradient>
+</defs>
+
+<rect x="0" y="0" width="256" height="256" rx="56" fill="url(#bg)"/>
+
+<g stroke="#12E37A" stroke-width="1" opacity="0.22">
+<line x1="34" y1="20" x2="34" y2="236"/>
+<line x1="58" y1="20" x2="58" y2="236"/>
+<line x1="82" y1="20" x2="82" y2="236"/>
+<line x1="106" y1="20" x2="106" y2="236"/>
+<line x1="150" y1="20" x2="150" y2="236"/>
+<line x1="174" y1="20" x2="174" y2="236"/>
+<line x1="198" y1="20" x2="198" y2="236"/>
+<line x1="222" y1="20" x2="222" y2="236"/>
+</g>
+
+<g fill="#12E37A" font-family="monospace" font-size="11" opacity="0.55">
+<text x="30" y="40">1</text><text x="30" y="66">0</text><text x="30" y="92">1</text>
+<text x="54" y="52">0</text><text x="54" y="78">1</text><text x="54" y="104">0</text>
+<text x="78" y="34">1</text><text x="78" y="60">1</text><text x="78" y="86">0</text>
+<text x="102" y="46">0</text><text x="102" y="72">1</text>
+<text x="150" y="46">1</text><text x="150" y="72">0</text>
+<text x="174" y="34">0</text><text x="174" y="60">1</text><text x="174" y="86">1</text>
+<text x="198" y="52">1</text><text x="198" y="78">0</text><text x="198" y="104">1</text>
+<text x="222" y="40">0</text><text x="222" y="66">1</text>
+
+<text x="30" y="160">0</text><text x="30" y="186">1</text><text x="30" y="212">0</text>
+<text x="54" y="172">1</text><text x="54" y="198">0</text>
+<text x="78" y="154">0</text><text x="78" y="180">1</text><text x="78" y="206">1</text>
+<text x="102" y="166">1</text><text x="102" y="192">0</text>
+<text x="150" y="166">0</text><text x="150" y="192">1</text>
+<text x="174" y="154">1</text><text x="174" y="180">0</text><text x="174" y="206">0</text>
+<text x="198" y="172">0</text><text x="198" y="198">1</text>
+<text x="222" y="160">1</text><text x="222" y="186">0</text><text x="222" y="212">1</text>
+</g>
+
+<circle cx="128" cy="128" r="72" fill="none" stroke="#12E37A" stroke-width="1" opacity="0.35"/>
+
+<g opacity="0.45" stroke="#7CFFB8" stroke-width="2" stroke-linecap="round">
+<line x1="76" y1="150" x2="76" y2="108"/>
+<line x1="180" y1="150" x2="180" y2="108"/>
+<path d="M 48 150 Q 76 104 104 150" fill="none"/>
+<path d="M 152 150 Q 180 104 208 150" fill="none"/>
+</g>
+
+<g font-family="monospace" font-weight="700" text-anchor="middle">
+<text x="128" y="150" font-size="54" fill="#12E37A" opacity="0.3" letter-spacing="0">KASPA</text>
+<text x="128" y="148" font-size="54" fill="url(#kglow)" letter-spacing="0">KASPA</text>
+</g>
+</svg>
+
